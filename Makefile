@@ -4,6 +4,7 @@
 #   make check      全量质检：源文本体例 + 排版（交付前必跑）
 #   make annot      出注譯样张
 #   make slots      带注解占位页的版本
+#   make pdf        导出 PDF（五卷分册 + 合訂本）
 #   make sample     逐页截图
 #   make clean      清理产物
 
@@ -11,7 +12,7 @@ PY      := python3
 DECK    := build/卷一.html build/卷二.html build/卷三.html build/卷四.html build/卷五.html
 ANNOT   := data/annotations/1-一東.json
 
-.PHONY: all deck slots annot check sample clean help
+.PHONY: all deck slots annot check pdf sample clean help
 
 all: deck
 
@@ -30,6 +31,9 @@ annot:
 check:
 	$(PY) src/check_source.py
 	$(PY) src/check_deck.py
+
+pdf: deck
+	$(PY) src/build_pdf.py
 
 sample: deck
 	$(PY) -c "import sys; sys.path.insert(0,'src'); \

@@ -264,11 +264,19 @@ body:hover .deck-nav{opacity:.9}
   border:1px solid rgba(246,239,225,.14);backdrop-filter:blur(4px);
   opacity:1;transition:opacity .6s ease;pointer-events:none}
 .deck-hint.fade{opacity:0}
+/* ---------- 打印 / 导出 PDF ---------- */
+/* 1280×720 px @96dpi = 338.667×190.5 mm，一页一张幻灯片 */
+@page{size:338.667mm 190.5mm;margin:0}
 @media print{
-  html,body{height:auto;overflow:visible;background:#fff}
+  html,body{height:auto;overflow:visible;background:#fff;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
   .slide{position:relative;top:auto;left:auto;transform:none;opacity:1;visibility:visible;
-    pointer-events:auto;margin:0 auto;page-break-after:always;break-after:page}
-  .deck-bar,.deck-nav,.deck-hint{display:none}
+    pointer-events:auto;margin:0;box-shadow:none;
+    page-break-after:always;break-after:page;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slide:last-of-type{page-break-after:auto;break-after:auto}
+  .deck-bar,.deck-nav,.deck-hint{display:none!important}
+  .head,.head-rule,.stage,.foot{break-inside:avoid;page-break-inside:avoid}
 }
 """
 
