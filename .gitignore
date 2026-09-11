@@ -1,0 +1,5 @@
+build/
+__pycache__/
+data/source/raw/
+research/原文緩存/
+.DS_Store
